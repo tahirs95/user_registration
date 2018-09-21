@@ -1,19 +1,37 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
-  <h2>Sign up</h2>
+  <h2 style="color: #031c5f;">Sign up</h2>
   <form method="post">
     {% csrf_token %}
-      {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="display: none">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-      {% endfor %}
+
+    <div class="input">
+        <label for="id_username" style="background-color: #0c5460;"></label>
+        {{ form.username|as_crispy_field }}
+        <span class="spin"></span>
+     </div>
+   <div class="input">
+        {{ form.email|as_crispy_field }}
+        <span class="spin"></span>
+  </div>
+  <div class="input">
+          {{ form.password1|as_crispy_field }}
+          <span class="spin"></span>
+    </div>
+    <div class="input">
+          {{ form.password2|as_crispy_field }}
+          <span class="spin"></span>
+    </div> 
+    
+    </br>
+    </br>
+    </br>
+    <center>
     <button type="submit">Sign up</button>
-  </form>
+    </form>
 {% endblock %}
+
+
+

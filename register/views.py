@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 
 def signup(request):
     if request.method == 'POST':
@@ -49,3 +50,7 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Invalid')
     
+@login_required
+def home(request):
+    template_name = 'home.html'
+    return render(request, template_name, )

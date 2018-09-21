@@ -16,10 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from register import views
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView,LogoutView
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r'', views.home, name='home'),
     path(r'signup/', views.signup, name='signup'),
     path(r'activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate, name='activate'),
+    path(r'login/', auth_views.LoginView.as_view(), name = 'login'),
+    path(r'logout/', auth_views.LogoutView.as_view(), name = 'logout'),
 ]
 
